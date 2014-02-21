@@ -1,0 +1,60 @@
+.panel-title{
+	margin-bottom:10px;
+}
+/* Login Forn*/
+.form-signin {
+max-width: 330px;
+padding: 15px;
+margin: 0 auto;
+}
+
+.form-signin .checkbox {
+font-weight: normal;
+font-size: 14px;
+text-align: left;
+line-height: normal;
+}
+
+/*Grafica*/
+.graph {
+max-width: 960px;
+height: 100%;
+max-height: 400px;	
+
+
+}
+
+.panel-body{
+	height: 400px;
+}
+
+#no-graph{
+	height: 100%; 
+}
+
+#ListUsr{
+	margin: 10px 100px 10px 100px;
+	
+}
+
+#ListUsr .badge{
+	font-size: 14px;
+}
+
+#wrap {
+min-height: 100%;
+height: auto;
+margin: 0 auto -60px;
+padding: 0 0 60px;
+}
+
+#footer {
+height: 60px;
+
+}
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}

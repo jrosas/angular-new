@@ -1,0 +1,239 @@
+
+
+
+<div  ng-cotroller="Mainctrl">
+
+
+    <ltx-daily > </ltx-daily>
+
+
+ <ltx-graph 
+    graph-title="Ventas Diarias"
+    patria="true"> 
+{{fromDate}}
+        <nvd3-multi-bar-chart
+
+         data="dataSales"
+         id="ivs"
+         xAxisTickFormat="xAxisTickFormat()"
+         yAxisTickFormat="y1AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentSalesFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+         margin={left:100,top:50,bottom:50,right:50}
+
+         ><svg ></svg>
+       </nvd3-multi-bar-chart>
+
+</ltx-graph>
+
+
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title" align="center">Ventas diarias. (Últimos 30 días) </h5>
+    </div>
+    <div class="panel-body" >
+
+        <div class="graph">        
+
+   <!--      <nvd3-multi-bar-chart
+
+         data="dataSales"
+         id="ivs"
+         xAxisTickFormat="xAxisTickFormat()"
+         yAxisTickFormat="y1AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentSalesFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+        
+          
+
+         margin={left:100,top:50,bottom:50,right:50}
+         ><svg ></svg></nvd3-multi-bar-chart>  -->
+     </div>
+ </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title" align="center">Recurrencia de Usuarios. (Últimos 30 días)  </h5>
+    </div>
+    <div class="panel-body" >
+
+        <div class="graph">        
+
+         <nvd3-multi-bar-chart
+
+         data="dataNvR"
+         id="NvR"
+         xAxisTickFormat="xAxisTickFormat()"
+         yAxisTickFormat="y2AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentNvRFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+         stacked="true"
+         showLegend="true"
+         
+
+         margin={left:100,top:200,bottom:50,right:50}
+         ><svg ></svg></nvd3-multi-bar-chart>
+     </div>
+ </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+
+        <h5 class="panel-title" align="center"> Promedio de Ventas por Hora</h5>
+
+    </div>
+    <div class="panel-body" >
+
+        <div class="graph">        
+
+         <nvd3-multi-bar-chart
+         data="dataAvgSales"
+         id="avgsales"
+         tooltipcontent="toolTipContentAvgFunction()"
+         yAxisTickFormat="y1AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         margin={left:100,top:200,bottom:50,right:50}
+         tooltips="true"        
+         showLegend="true"
+           y="yFunctionAvg()"
+       
+         ><svg ></svg></nvd3-multi-bar-chart>
+         </div>
+
+
+
+
+     </div>
+ </div>
+
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title" align="center">  Ventas Mensuales vs Cantidad de Facturas.  </h5>
+  </div>
+  <div class="panel-body">
+
+    <div class="graph">
+
+        <nvd3-line-plus-bar-chart
+
+        data="dataSvI_M"
+        id="SvI_M"
+        xAxisTickFormat="xAxisTickMonthlyFormat()"
+        y1AxisTickFormat="y1AxisTickFormat()"
+     y2AxisTickFormat="y2AxisTickFormat()"
+
+        interactive="true"
+        tooltips="true"
+        showlegend="true"
+        showXAxis="true"
+        showYAxis="true"
+   tooltipcontent="toolTipContentSalesFunction()"
+        
+        margin={left:100,top:200,bottom:50,right:50}>
+        <svg></svg>
+    </nvd3-line-plus-bar-chart>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title" align="center"> Facturas identificadas vs Facturas no identificadas. (Últimos 30 días)</h5>
+  </div>
+  <div class="panel-body">
+
+    <div class="graph">
+
+        <nvd3-multi-bar-chart
+
+        data="dataIdvnid"
+        id="idvsnid"
+        xAxisTickFormat="xAxisTickFormat()"
+        yAxisTickFormat="y2AxisTickFormat()"
+tooltipcontent="toolTipContentIdvNidFunction()"
+        interactive="true"
+        tooltips="true"
+        showlegend="true"
+        showXAxis="true"
+        showYAxis="true"
+        reduceXTicks="true"
+        stacked="true"
+        
+        
+       margin={left:100,top:200,bottom:50,right:50}>
+        <svg></svg>
+    </nvd3-multi-bar-chart>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title" align="center"> Facturas identificadas vs Facturas no identificadas. (Histórico)</h5>
+  </div>
+  <div class="panel-body">
+
+    <div class="graph">
+
+        <nvd3-pie-chart
+        data="dataIdvnidTotal"
+        id="IdvnidTotal"
+        x="xFunction()"
+        y="yFunction()"
+
+        tooltipcontent="toolTipFactFunction()"
+        color="colorFunction()"
+        showLabels="true"
+        pieLabelsOutside="false"
+        showValues="false"
+        showLegend="true"
+        tooltips="true"
+        labelType="percent"
+        labelThreshold="0.5"
+        margin={left:100,top:200,bottom:50,right:50}>
+        <svg></svg>
+    </nvd3-pie-chart>
+
+
+</div>
+</div>
+</div>
+
+</div>

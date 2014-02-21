@@ -1,0 +1,136 @@
+
+
+    <div  ng-cotroller="RecurrenceCtrl">
+
+<div class="alert alert-warning" align="center">
+      Los información en esta página se basa en las <strong> Facturas Identificadas ({{dataResumePercent}}%)</strong>  
+    </div>
+
+
+
+<div  class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title" align="center"> Usuarios clasificados por Cantidad de Visitas</h5>
+    </div>
+    <div id="no-graph" class="panel-body"  >
+
+		<ul id="ListUsr" class="list-group">
+      	<li class="list-group-item">
+       		 <span class="badge">Cantidad de Usuarios</span>
+        	Número de Visitas
+     	 </li>
+      	<li class="list-group-item" ng-repeat="data in dataResumeValue">
+       		 <span class="badge">{{ data[2] | number:2  }}%</span>
+             <span class="badge">{{data[1]}}</span>
+
+        	{{data[0]}}
+     	 </li>
+      
+    	</ul>
+
+ 	</div>
+
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title" align="center"> Tiempo promedio entre Visitas (Últimos 30 días). </h5> 
+         
+    </div>
+    <div class="panel-body" >
+<h6 align="center"> Promedio general {{dataAvgTotal|  number:2}}  días</h6>
+        <div class="graph">        
+
+         <nvd3-line-chart
+
+         data="dataAvg"
+         id="avgdist"
+       	 forceX="[0]"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         yAxisTickFormat="IntAxisTickFormat()"
+         
+         staggerLabels="true"
+        tooltipcontent="toolTipContentAvgFunction()"
+          
+
+         margin={left:100,top:5,bottom:50,right:50}
+         ><svg ></svg></nvd3-line-chart>
+     </div>
+ </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title" align="center"> Visitas Nuevas mensuales vs Visitas Recurrentes </h5>
+    </div>
+    <div class="panel-body" >
+
+        <div class="graph">        
+
+         <nvd3-multi-bar-chart
+
+         data="dataMonthlyNvR"
+         id="NvRMonthly"
+         xAxisTickFormat="xAxisTickMonthlyFormat()"
+         yAxisTickFormat="y2AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentNvRFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+ 
+         showLegend="true"
+         
+
+         margin={left:100,top:200,bottom:50,right:50}
+         ><svg ></svg></nvd3-multi-bar-chart>
+     </div>
+ </div>
+
+</div>
+
+<!--<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title" align="center"> Ventas por Visitas Nuevas vs Ventas Visitas Recurrentes </h5>
+    </div>
+    <div class="panel-body" >
+
+        <div class="graph">        
+
+         <nvd3-multi-bar-chart
+
+         data="dataInvoNvsR"
+         id="InvoNvsR"
+         
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         xAxisTickFormat="xAxisDayTickFormat()"
+         reduceXTicks="true"
+         staggerLabels="true"
+         
+         showLegend="true"
+         
+
+         margin={left:100,top:200,bottom:50,right:50}
+         ><svg ></svg></nvd3-multi-bar-chart>
+     </div>
+ </div>
+
+</div>
+-->
+
+
+
+
+</div>
+
+
