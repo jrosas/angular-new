@@ -1,11 +1,15 @@
 'use strict';
 
-
-
-
 projectXCtrl.controller('MainCtrl', [ '$scope', 'Invoices', 'Sales', 'Nidsales', 'Idsales','dailyRecurrence','dailyNew', 'dailyRecuNew', 'DailyStats','AverageStats', '$cookieStore', function ($scope, Invoices, Sales, Nidsales, Idsales ,dailyRecurrence, dailyNew, dailyRecuNew, DailyStats, AverageStats, $cookieStore) {
-$scope.fromDate="fffff";
-console.log($scope);
+
+$scope.data={
+  sales : "" ,
+   
+};
+
+
+
+
  function fetchDataIvs(){
 
    Sales.getSales()
@@ -13,13 +17,17 @@ console.log($scope);
 
      var dta = [{color:"#428bca", key:"Ventas",values:[]}];
      dta[0].values = response.values;
-     $scope.dataSales=dta;
+     $scope.data.sales=dta;
 
 
 
    });
 
  }
+
+
+
+
 
  function fetchDataNvR(){
 

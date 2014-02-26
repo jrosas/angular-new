@@ -3,17 +3,17 @@
 
 <div  ng-cotroller="Mainctrl">
 
-
     <ltx-daily > </ltx-daily>
 
-
+ 
  <ltx-graph 
     graph-title="Ventas Diarias"
-    patria="true"> 
-{{fromDate}}
+data="data.sales"
+    > 
+
         <nvd3-multi-bar-chart
 
-         data="dataSales"
+         data="data.sales"
          id="ivs"
          xAxisTickFormat="xAxisTickFormat()"
          yAxisTickFormat="y1AxisTickFormat()"
@@ -31,7 +31,32 @@
 
 </ltx-graph>
 
+ <ltx-graph 
+    graph-title="Ventas Diarias"
+    date="date1"
+    fromDate="fromDate"
+    untilDate="untilDate"
+    > 
 
+        <nvd3-multi-bar-chart
+
+         data="dataSales"
+         id="ivss"
+         xAxisTickFormat="xAxisTickFormat()"
+         yAxisTickFormat="y1AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentSalesFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+         margin={left:100,top:50,bottom:50,right:50}
+
+         ><svg ></svg>
+       </nvd3-multi-bar-chart>
+
+</ltx-graph>
 
 
 
@@ -130,7 +155,7 @@
      </div>
  </div>
 
-</div>
+
 
 
 <div class="panel panel-default">
