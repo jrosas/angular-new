@@ -37,7 +37,11 @@ projectXApp.config(function ($routeProvider) {
         resolve:{
           'SalesData':function(graphSales){
               return graphSales.promise;
+           },
+          'RecurrencesData':function(graphRecurrences){
+              return graphRecurrences.promise;
            }
+
          }
        
        

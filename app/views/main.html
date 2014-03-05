@@ -115,7 +115,7 @@ type="type.sales"
  </div>
 
 </div>
-
+{{data.recurrences}}
 <div class="panel panel-default">
     <div class="panel-heading">
         <h5 class="panel-title" align="center">Recurrencia de Usuarios. (Últimos 30 días)  </h5>
@@ -126,8 +126,8 @@ type="type.sales"
 
          <nvd3-multi-bar-chart
 
-         data="dataNvR"
-         id="NvR"
+         data="data.recurrences"
+         id="NvR21"
          xAxisTickFormat="xAxisTickFormat()"
          yAxisTickFormat="y2AxisTickFormat()"
          showXAxis="true"
