@@ -21,10 +21,22 @@ projectXServices.factory('graphSales', function ($http) {
       getData: function () {
           return salesData;//.getSomeData();
       },
-      updateDate: function (tbeg,tend) {
+
+      default: function () {
           $http({
             method: 'GET',
-            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.sales+"?"+ltxVars.arguments.monthly+"&"+ltxVars.arguments.last_year
+            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.sales+"?"+ltxVars.arguments.last_thirty
+        }).success(function(response){ 
+          dta[0].values = response.values;
+            salesData=dta;
+       });
+      },
+
+      updateDate: function (type,tbeg,tend) {
+          
+          $http({
+            method: 'GET',
+            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.sales+"?"+ (type=="monthly" ? ltxVars.arguments.monthly +"&" :"") +"beg="+tbeg+"&"+"end="+tend
         }).success(function(response){ 
           dta[0].values = response.values;
             salesData=dta;

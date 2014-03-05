@@ -8,7 +8,7 @@ $scope.data={
 };
 
 $scope.type={
-  sales : "Diario" ,
+  sales : "daily" ,
    
 };
 $scope.data.sales= graphSales.getData();
