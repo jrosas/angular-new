@@ -15,6 +15,7 @@ var end_day=now+86399;//(3600*24)-1
 var last_thirty=now-2592000;//3600*24*30;
 var last_year=now-31536000;//3600*24*365;
 
+console.log(end_day);
 var ltxVars = {};
 ltxVars.endpoints = {
 	main :"/api",

@@ -5,7 +5,7 @@
 
     <ltx-daily > </ltx-daily>
 
- 
+ {{data.sales}}
  <ltx-graph 
     graph-title="Ventas Diarias"
 data="data.sales"
@@ -25,7 +25,7 @@ data="data.sales"
          reduceXTicks="true"
          staggerLabels="true"
          margin={left:100,top:50,bottom:50,right:50}
-
+         objectEquality="true"
          ><svg ></svg>
        </nvd3-multi-bar-chart>
 

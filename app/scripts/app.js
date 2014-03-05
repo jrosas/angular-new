@@ -33,7 +33,12 @@ projectXApp.config(function ($routeProvider) {
     $routeProvider.when('/analytics/main', 
       {
         templateUrl: 'views/main.html', 
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        resolve:{
+          'SalesData':function(graphSales){
+              return graphSales.promise;
+           }
+         }
        
        
       });

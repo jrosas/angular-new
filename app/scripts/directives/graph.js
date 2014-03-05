@@ -1,7 +1,7 @@
 'use strict';
 
 
-projectXDir.directive('ltxGraph', [ 'Sales', function (Sales) {
+projectXDir.directive('ltxGraph', [ 'graphSales', function (graphSales) {
     return {
       templateUrl: 'views/templates/ltxGraph.html',
       restrict: 'E',
@@ -13,10 +13,14 @@ projectXDir.directive('ltxGraph', [ 'Sales', function (Sales) {
       },
 
       link : function postLink (scope, element, attrs) {
-      console.log("afuera");
-console.log(scope);
+
+
         scope.btnCal="Diario";
-                  
+        scope.date={from:"",
+      until:"",};
+
+
+    
         scope.switch=function(){
           if (scope.btnCal==="Diario") {
            
@@ -30,17 +34,28 @@ console.log(scope);
     
         
     scope.refresh = function (){
+graphSales.updateDate(null,null);
+scope.data= graphSales.getData();
+      if (scope.date.from!="" ){
+        scope.date.from.setHours(0);
+        scope.date.from.setMinutes(0);
+        scope.date.from.setSeconds(0);
+        scope.date.from.setMilliseconds(0);
+        var from=Math.round(scope.date.from/1000)-(scope.date.from.getTimezoneOffset()*60);
+
 console.log("antes");
-console.log(scope);
-//scope.data="";
+console.log(from);
+
+//graphSales.clearData();
 console.log('desps');
 console.log(scope);
       //scope.dataSales=scope.data;
-      
+      }
     };
     
 
     scope.delete = function (){
+      scope.data=[];
       scope.btnCal="Diario";
       scope.date={from:"",
       until:"",};
