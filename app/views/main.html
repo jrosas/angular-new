@@ -9,7 +9,11 @@
  <ltx-graph 
     graph-title="Ventas Diarias"
 data="data.sales"
-    > 
+type="type.sales"
+    >
+
+    <div  ng-switch on="type.sales">
+<div class="graph" ng-switch-when="Diario"> 
 
         <nvd3-multi-bar-chart
 
@@ -28,7 +32,27 @@ data="data.sales"
          objectEquality="true"
          ><svg ></svg>
        </nvd3-multi-bar-chart>
+</div>
+<div class="graph" ng-switch-when="Mensual"> 
+    <nvd3-multi-bar-chart
 
+         data="data.sales"
+         id="ivs"
+         xAxisTickFormat="xAxisTickMonthlyFormat()"
+         yAxisTickFormat="y1AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentSalesFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+         margin={left:100,top:50,bottom:50,right:50}
+         objectEquality="true"
+         ><svg ></svg>
+       </nvd3-multi-bar-chart>
+</div>
+</div>
 </ltx-graph>
 
  <ltx-graph 

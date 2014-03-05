@@ -10,6 +10,7 @@ projectXDir.directive('ltxGraph', [ 'graphSales', function (graphSales) {
       scope: {
         graphTitle:"@",
         data:"=",
+        type:"="
       },
 
       link : function postLink (scope, element, attrs) {
@@ -25,17 +26,20 @@ projectXDir.directive('ltxGraph', [ 'graphSales', function (graphSales) {
           if (scope.btnCal==="Diario") {
            
             scope.btnCal="Mensual";
-           
+           scope.type= "Mensual";
           } else{
            
             scope.btnCal="Diario";
+            scope.type= "Diario";
           };
         };
     
         
     scope.refresh = function (){
 graphSales.updateDate(null,null);
+
 scope.data= graphSales.getData();
+scope.type= "Diario";
       if (scope.date.from!="" ){
         scope.date.from.setHours(0);
         scope.date.from.setMinutes(0);
