@@ -4,6 +4,7 @@ projectXDir.directive('ltxHeader', ['$location', function ($location) {
     return {
       templateUrl: 'views/templates/ltxHeader.html',
       restrict: 'E',
+      scope:{},
       link: function postLink(scope, element, attrs) {
         //element.text('this is the headerbar directive');
         

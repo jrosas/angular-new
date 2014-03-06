@@ -8,8 +8,8 @@
  <ltx-graph 
     graph-title="Ventas Diarias"
     graph="sales"
-data="data.sales"
-type="type.sales"
+    data="data.sales"
+    type="type.sales"
     >
 
     <div  ng-switch on="type.sales">
@@ -56,66 +56,72 @@ type="type.sales"
 </ltx-graph>
 
  <ltx-graph 
-    graph-title="Ventas Diarias"
-    date="date1"
-    fromDate="fromDate"
-    untilDate="untilDate"
-    > 
+    graph-title="Recurrencia de Usuarios"
+    graph="recurrences"
+    data="data.recurrences"
+    type="type.recurrences"
+    >
+
+    <div  ng-switch on="type.recurrences">
+<div class="graph" ng-switch-when="daily"> 
 
         <nvd3-multi-bar-chart
 
-         data="dataSales"
-         id="ivss"
+         data="data.recurrences"
+         id="nvr1"
          xAxisTickFormat="xAxisTickFormat()"
-         yAxisTickFormat="y1AxisTickFormat()"
+         yAxisTickFormat="y2AxisTickFormat()"
          showXAxis="true"
          showYAxis="true"
          interactive="true"
          tooltips="true"
-         tooltipcontent="toolTipContentSalesFunction()"
+         tooltipcontent="toolTipContentNvRFunction()"
          reduceXTicks="true"
          staggerLabels="true"
          margin={left:100,top:50,bottom:50,right:50}
-
+         objectEquality="true"
+         stacked="true"
+         showLegend="true"
          ><svg ></svg>
        </nvd3-multi-bar-chart>
+</div>
+<div class="graph" ng-switch-when="monthly"> 
+    <nvd3-multi-bar-chart
 
+         data="data.recurrences"
+         id="nvr2"
+         xAxisTickFormat="xAxisTickMonthlyFormat()"
+         yAxisTickFormat="y2AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentNvRFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+         margin={left:100,top:50,bottom:50,right:50}
+         objectEquality="true"
+         stacked="true"
+         showLegend="true"
+         ><svg ></svg>
+       </nvd3-multi-bar-chart>
+</div>
+</div>
 </ltx-graph>
 
 
 
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h5 class="panel-title" align="center">Ventas diarias. (Últimos 30 días) </h5>
-    </div>
-    <div class="panel-body" >
+<!--
 
-        <div class="graph">        
 
-   <!--      <nvd3-multi-bar-chart
 
-         data="dataSales"
-         id="ivs"
-         xAxisTickFormat="xAxisTickFormat()"
-         yAxisTickFormat="y1AxisTickFormat()"
-         showXAxis="true"
-         showYAxis="true"
-         interactive="true"
-         tooltips="true"
-         tooltipcontent="toolTipContentSalesFunction()"
-         reduceXTicks="true"
-         staggerLabels="true"
-        
-          
 
-         margin={left:100,top:50,bottom:50,right:50}
-         ><svg ></svg></nvd3-multi-bar-chart>  -->
-     </div>
- </div>
 
-</div>
-{{data.recurrences}}
+
+
+
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h5 class="panel-title" align="center">Recurrencia de Usuarios. (Últimos 30 días)  </h5>
@@ -124,7 +130,7 @@ type="type.sales"
 
         <div class="graph">        
 
-         <nvd3-multi-bar-chart
+        <nvd3-multi-bar-chart
 
          data="data.recurrences"
          id="NvR21"
@@ -142,7 +148,7 @@ type="type.sales"
          
 
          margin={left:100,top:200,bottom:50,right:50}
-         ><svg ></svg></nvd3-multi-bar-chart>
+         ><svg ></svg></nvd3-multi-bar-chart> 
      </div>
  </div>
 
@@ -284,5 +290,5 @@ tooltipcontent="toolTipContentIdvNidFunction()"
 </div>
 </div>
 </div>
-
+-->
 </div>

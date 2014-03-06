@@ -86,6 +86,29 @@ var promise = dailyRecurrence.success(function(response){
             url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.recunew+"?"+ltxVars.arguments.last_thirty
           });
 
+
+$q.all([dailyRecurrence,dailyNew,dailyRecuNew]).then(function (results) {
+    angular.forEach(results, function (result) {
+      
+    switch(result.data.key){
+        case "daily_recurrence":
+          dta[0].values = result.data.values;
+          break;
+        case "recurrence_resume":
+          dto[0].values = result.data.values;
+          break;
+        case "daily_recunew":
+          dtao[0].values = result.data.values;
+          break;
+        };
+        var aux =dta.concat(dto);
+
+        recurrenceData = aux.concat(dtao);
+        });
+
+
+  });
+/*
           dailyRecurrence.success(function(response){
             dta[0].values = response.values;
             dailyNew.success(function(response){
@@ -94,24 +117,51 @@ var promise = dailyRecurrence.success(function(response){
                 dtao[0].values = response.values;
                 var aux =dta.concat(dto);
                 recurrenceData = aux.concat(dtao);
-              
+              console.log(recurrenceData);
               });
             });
-          });
+          });*/
           
       },
 
       updateDate: function (type,tbeg,tend) {
-          
-          $http({
+
+      var dailyRecurrence = $http({
             method: 'GET',
-            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.sales+"?"+ (type=="monthly" ? ltxVars.arguments.monthly +"&" :"") +"beg="+tbeg+"&"+"end="+tend
-        }).success(function(response){ 
-          dta[0].values = response.values;
-            salesData=dta;
-       });
+            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.recurrence+"?"+ (type=="monthly" ? ltxVars.arguments.monthly +"&" :"") +"beg="+tbeg+"&"+"end="+tend
+          });
+
+         var dailyNew = $http({
+            method: 'GET',
+            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.new+"?"+ (type=="monthly" ? ltxVars.arguments.monthly +"&" :"") +"beg="+tbeg+"&"+"end="+tend
+          });
+
+       var dailyRecuNew = $http({
+            method: 'GET',
+            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.recunew+"?"+ (type=="monthly" ? ltxVars.arguments.monthly +"&" :"") +"beg="+tbeg+"&"+"end="+tend
+          });
+
+$q.all([dailyRecurrence,dailyNew,dailyRecuNew]).then(function (results) {
+    angular.forEach(results, function (result) {
+      
+    switch(result.data.key){
+        case "daily_recurrence":
+          dta[0].values = result.data.values;
+          break;
+        case "recurrence_resume":
+          dto[0].values = result.data.values;
+          break;
+        case "daily_recunew":
+          dtao[0].values = result.data.values;
+          break;
+        };
+        var aux =dta.concat(dto);
+
+        recurrenceData = aux.concat(dtao);
+        });
 
 
+  });
 
 
       }

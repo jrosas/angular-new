@@ -1,115 +1,142 @@
 'use strict';
 
 
-projectXDir.directive('ltxGraph', [ 'graphSales', function (graphSales) {
-    return {
-      templateUrl: 'views/templates/ltxGraph.html',
-      restrict: 'E',
-      transclude: true,
-        
-      scope: {
-        graphTitle:"@",
-        graph:"@",
-        data:"=",
-        type:"="
-      },
+projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', function (graphSales,graphRecurrences) {
+  return {
+    templateUrl: 'views/templates/ltxGraph.html',
+    restrict: 'E',
+    transclude: true,
 
-      link : function postLink (scope, element, attrs) {
+    scope: {
+      graphTitle:"@",
+      graph:"@",
+      data:"=",
+      type:"="
+    },
+
+    link : function postLink (scope, element, attrs) {
 
 
-        scope.btnCal="Diario";
-        scope.date={from:"",
+      scope.btnCal="Diario";
+      scope.date={from:"",
       until:"",};
 
 
-    
-        scope.switch=function(){
-          if (scope.btnCal==="Diario") {
-           
-            scope.btnCal="Mensual";
-       
 
-          } else{
-           
-            scope.btnCal="Diario";
-      
-          };
+      scope.switch=function(){
+        if (scope.btnCal==="Diario") {
+
+          scope.btnCal="Mensual";
+
+
+        } else{
+
+          scope.btnCal="Diario";
+
         };
-    
-        
-    scope.refresh = function (){
-      var type = "";
-      if (scope.date.from!="" && scope.date.until!="" ){
-        scope.date.from.setHours(0);
-        scope.date.from.setMinutes(0);
-        scope.date.from.setSeconds(0);
-        scope.date.from.setMilliseconds(0);
-        var from=Math.round(scope.date.from/1000)-(scope.date.from.getTimezoneOffset()*60);
+      };
 
-/*ojo*/
+
+      scope.refresh = function (){
+        var type = "";
+        if (scope.date.from!="" && scope.date.until!="" ){
+          scope.date.from.setHours(0);
+          scope.date.from.setMinutes(0);
+          scope.date.from.setSeconds(0);
+          scope.date.from.setMilliseconds(0);
+          var from=Math.round(scope.date.from/1000)-(scope.date.from.getTimezoneOffset()*60);
+
+          /*ojo*/
      //   scope.date.until=scope.date.until+2592000;
-        /*ojo*/
-        scope.date.until.setHours(0);
-        scope.date.until.setMinutes(0);
-        scope.date.until.setSeconds(0);
-        scope.date.until.setMilliseconds(0);
-        var until=Math.round(scope.date.until/1000)-(scope.date.until.getTimezoneOffset()*60);
+     /*ojo*/
+     scope.date.until.setHours(0);
+     scope.date.until.setMinutes(0);
+     scope.date.until.setSeconds(0);
+     scope.date.until.setMilliseconds(0);
+     var until=Math.round(scope.date.until/1000)-(scope.date.until.getTimezoneOffset()*60);
 
-/*ojo*/
-if (scope.btnCal=="Mensual"){
-  
+     /*ojo*/
+     if (scope.btnCal=="Mensual"){
+
       type="monthly";
-     
 
-        /*ojo*/
+
+      /*ojo*/
     }
 
-if (scope.btnCal==="Mensual") {
-    
-    setTimeout(function() { scope.type="monthly";}, 50);
-    
-  }else{
-    
-   setTimeout(function() { scope.type="daily";}, 50);
+  if (scope.btnCal==="Mensual") {
+    scope.type="monthly";
+   //   setTimeout(function() { }, 50);
+    }else{
+      scope.type="daily";
+   //  setTimeout(function() { }, 50);
+     }; 
 
-  }; 
-
-switch(scope.graph){
+   switch(scope.graph){
 
     case "sales":
+
+   
+
+
       graphSales.updateDate(type,from,until);
       scope.data= graphSales.getData();
 
-      break;
-    case "invoices":
-      alert("algo");
-      break;
-    default:
-      console.log("Algo salio muy mal");
+    break;
 
-};
+    case "recurrences":
+
+    
+
+      graphRecurrences.updateDate(type,from,until);
+      scope.data= graphRecurrences.getData();
+
+    break;
+    default:
+    console.log("Algo salio muy mal");
+
+  };
   
   
 
 
 
       //scope.dataSales=scope.data;
-      }else{
+    }else{
 
-        alert("Debe colocar ambas fechas");
-      }
-    };
-    
+      alert("Debe colocar ambas fechas");
+    }
+  };
 
-    scope.delete = function (){
+
+  scope.delete = function (){
       //scope.data=[];
-      
-      graphSales.default();
+      scope.type="daily";
+      switch(scope.graph){
 
-      scope.data= graphSales.getData();
+        case "sales":
+  //  setTimeout(function() { }, 50);
+          graphSales.default();
+          scope.data= graphSales.getData();
+      console.log(" graphTitle: " + scope.graphTitle + " graph: " + scope.graph + " data: "+ scope.data + " type: " +scope.type);     
+    
+        break;
 
-      
-   setTimeout(function() { scope.type="daily";}, 50);
+        case "recurrences":
+//setTimeout(function() { scope.type="daily";}, 1000);
+          graphRecurrences.default();
+          scope.data= graphRecurrences.getData();
+       console.log(" graphTitle: " + scope.graphTitle + " graph: " + scope.graph + " data: "+ scope.data + " type: " +scope.type); 
+
+        break;
+
+        default:
+        console.log("Algo salio muy mal");
+
+      };
+      console.log(" graphTitle: " + scope.graphTitle + " graph: " + scope.graph + " data: "+ scope.data + " type: " +scope.type); 
+
+     // setTimeout(function() { scope.type="daily";}, 500);
       scope.btnCal="Diario";
       scope.date={from:"",
       until:"",};
@@ -138,9 +165,9 @@ switch(scope.graph){
         });
 */
     //    console.log(element);
-      
+
         // body...
       }
-     
+
     };
   }]);
