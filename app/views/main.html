@@ -134,7 +134,7 @@
 
          data="data.recurrences"
          id="NvR21"
-         xAxisTickFormat="xAxisTickFormat()"
+         xAxisTickFormat="xAxisTickFormat()"xAxisTickMonthlyFormat
          yAxisTickFormat="y2AxisTickFormat()"
          showXAxis="true"
          showYAxis="true"
@@ -186,6 +186,62 @@
  </div>
 
 
+-->
+
+ <ltx-graph 
+    graph-title="Ventas vs Cantidad de Facturas"
+    graph="salesInvoices"
+    data="data.salesInvoices"
+    type="type.salesInvoices"
+    >
+
+    <div  ng-switch on="type.salesInvoices">
+<div class="graph" ng-switch-when="daily"> 
+
+       <nvd3-line-plus-bar-chart
+
+        data="data.salesInvoices"
+        id="SvI_M1"
+        xAxisTickFormat="xAxisTickFormat()"
+        y1AxisTickFormat="y1AxisTickFormat()"
+     y2AxisTickFormat="y2AxisTickFormat()"
+
+        interactive="true"
+        tooltips="true"
+        showlegend="true"
+        showXAxis="true"
+        showYAxis="true"
+   tooltipcontent="toolTipContentSalesFunction()"
+        objectEquality="true"
+        margin={left:100,top:200,bottom:50,right:50}>
+        <svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+<div class="graph" ng-switch-when="monthly"> 
+   <nvd3-line-plus-bar-chart
+
+        data="data.salesInvoices"
+        id="SvI_M2"
+        xAxisTickFormat="xAxisTickMonthlyFormat()"
+        y1AxisTickFormat="y1AxisTickFormat()"
+     y2AxisTickFormat="y2AxisTickFormat()"
+
+        interactive="true"
+        tooltips="true"
+        showlegend="true"
+        showXAxis="true"
+        showYAxis="true"
+   tooltipcontent="toolTipContentSalesFunction()"
+        objectEquality="true"
+        margin={left:100,top:200,bottom:50,right:50}>
+        <svg></svg>
+    </nvd3-line-plus-bar-chart>
+</div>
+</div>
+</ltx-graph>
+
+
+
 
 
 <div class="panel panel-default">
@@ -198,8 +254,8 @@
 
         <nvd3-line-plus-bar-chart
 
-        data="dataSvI_M"
-        id="SvI_M"
+        data="data.salesInvoices"
+        id="SvI_M1"
         xAxisTickFormat="xAxisTickMonthlyFormat()"
         y1AxisTickFormat="y1AxisTickFormat()"
      y2AxisTickFormat="y2AxisTickFormat()"
@@ -221,7 +277,7 @@
 </div>
 
 </div>
-
+<!--
 
 <div class="panel panel-default">
     <div class="panel-heading">

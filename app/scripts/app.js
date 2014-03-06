@@ -40,6 +40,9 @@ projectXApp.config(function ($routeProvider) {
            },
           'RecurrencesData':function(graphRecurrences){
               return graphRecurrences.promise;
+           },
+          'SalesInvoicesData':function(graphSalesInvoices){
+              return graphSalesInvoices.promise;
            }
 
          }
