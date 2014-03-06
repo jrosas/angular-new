@@ -112,60 +112,20 @@
 
 
 
-<!--
+<ltx-graph 
+    graph-title="Promedio de ventas por hora"
+    graph="averageSalesHour"
+    data="data.averagePerHour"
+    type="type.averagePerHour"
+    >
 
-
-
-
-
-
-
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h5 class="panel-title" align="center">Recurrencia de Usuarios. (Últimos 30 días)  </h5>
-    </div>
-    <div class="panel-body" >
-
-        <div class="graph">        
+ 
+<div class="graph" > 
 
         <nvd3-multi-bar-chart
 
-         data="data.recurrences"
-         id="NvR21"
-         xAxisTickFormat="xAxisTickFormat()"xAxisTickMonthlyFormat
-         yAxisTickFormat="y2AxisTickFormat()"
-         showXAxis="true"
-         showYAxis="true"
-         interactive="true"
-         tooltips="true"
-         tooltipcontent="toolTipContentNvRFunction()"
-         reduceXTicks="true"
-         staggerLabels="true"
-         stacked="true"
-         showLegend="true"
-         
+         data="data.averagePerHour"
 
-         margin={left:100,top:200,bottom:50,right:50}
-         ><svg ></svg></nvd3-multi-bar-chart> 
-     </div>
- </div>
-
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-
-        <h5 class="panel-title" align="center"> Promedio de Ventas por Hora</h5>
-
-    </div>
-    <div class="panel-body" >
-
-        <div class="graph">        
-
-         <nvd3-multi-bar-chart
-         data="dataAvgSales"
          id="avgsales"
          tooltipcontent="toolTipContentAvgFunction()"
          yAxisTickFormat="y1AxisTickFormat()"
@@ -174,19 +134,72 @@
          margin={left:100,top:200,bottom:50,right:50}
          tooltips="true"        
          showLegend="true"
-           y="yFunctionAvg()"
+          y="yFunctionAvg()"
+          objectEquality="true"
        
-         ><svg ></svg></nvd3-multi-bar-chart>
-         </div>
+         ><svg ></svg>
+        </nvd3-multi-bar-chart>
+</div>
+</ltx-graph>
 
 
 
+<ltx-graph 
+    graph-title="Ventas identificadas vs No identificadas"
+    graph="idNid"
+    data="data.idNid"
+    type="type.idNid"
+    >
 
-     </div>
- </div>
+    <div  ng-switch on="type.recurrences">
+<div class="graph" ng-switch-when="daily"> 
 
+        <nvd3-multi-bar-chart
 
--->
+        data="data.idNid"
+        id="idvsnid"
+        xAxisTickFormat="xAxisTickFormat()"
+        yAxisTickFormat="y2AxisTickFormat()"
+tooltipcontent="toolTipContentIdvNidFunction()"
+        interactive="true"
+        tooltips="true"
+        showlegend="true"
+        showXAxis="true"
+        showYAxis="true"
+        reduceXTicks="true"
+        stacked="true"
+        objectEquality="true"
+         
+        
+       margin={left:100,top:200,bottom:50,right:50}>
+        <svg></svg>
+    </nvd3-multi-bar-chart>
+</div>
+<div class="graph" ng-switch-when="monthly"> 
+    <nvd3-multi-bar-chart
+
+        data="data.idNid"
+        id="idvsnid2"
+        xAxisTickFormat="xAxisTickFormat()"
+        yAxisTickFormat="xAxisTickMonthlyFormat()"
+tooltipcontent="toolTipContentIdvNidFunction()"
+        interactive="true"
+        tooltips="true"
+        showlegend="true"
+        showXAxis="true"
+        showYAxis="true"
+        reduceXTicks="true"
+        stacked="true"
+        objectEquality="true"
+         
+        
+       margin={left:100,top:200,bottom:50,right:50}>
+        <svg></svg>
+    </nvd3-multi-bar-chart>
+</div>
+</div>
+</ltx-graph>
+
 
  <ltx-graph 
     graph-title="Ventas vs Cantidad de Facturas"
@@ -279,40 +292,6 @@
 </div>
 <!--
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-      <h5 class="panel-title" align="center"> Facturas identificadas vs Facturas no identificadas. (Últimos 30 días)</h5>
-  </div>
-  <div class="panel-body">
-
-    <div class="graph">
-
-        <nvd3-multi-bar-chart
-
-        data="dataIdvnid"
-        id="idvsnid"
-        xAxisTickFormat="xAxisTickFormat()"
-        yAxisTickFormat="y2AxisTickFormat()"
-tooltipcontent="toolTipContentIdvNidFunction()"
-        interactive="true"
-        tooltips="true"
-        showlegend="true"
-        showXAxis="true"
-        showYAxis="true"
-        reduceXTicks="true"
-        stacked="true"
-        
-        
-       margin={left:100,top:200,bottom:50,right:50}>
-        <svg></svg>
-    </nvd3-multi-bar-chart>
-
-</div>
-
-
-</div>
-
-</div>
 
 
 <div class="panel panel-default">

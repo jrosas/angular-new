@@ -43,6 +43,12 @@ projectXApp.config(function ($routeProvider) {
            },
           'SalesInvoicesData':function(graphSalesInvoices){
               return graphSalesInvoices.promise;
+          'AverageData':function(graphSalesHour){
+              return graphSalesHour.promise;
+           },
+           'IdvNidData':function(graphIdNoId){
+              return graphIdNoId.promise;
+
            }
 
          }
