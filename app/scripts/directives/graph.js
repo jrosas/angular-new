@@ -1,7 +1,7 @@
 'use strict';
 
 
-projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', function (graphSales,graphRecurrences) {
+projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', function (graphSales,graphRecurrences,graphSalesHour,graphIdNoId) {
   return {
     templateUrl: 'views/templates/ltxGraph.html',
     restrict: 'E',
@@ -24,6 +24,7 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', function (
 
 
       scope.switch=function(){
+        if (scope.type != "hour"){
         if (scope.btnCal==="Diario") {
 
           scope.btnCal="Mensual";
@@ -34,6 +35,7 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', function (
           scope.btnCal="Diario";
 
         };
+      };
       };
 
 
@@ -92,6 +94,22 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', function (
       scope.data= graphRecurrences.getData();
 
     break;
+    case "averageSalesHour":
+
+    
+
+      graphSalesHour.updateDate(type,from,until);
+      scope.data= graphSalesHour.getData();
+
+    break;
+    case "idNid":
+
+    
+
+      graphIdNoId.updateDate(type,from,until);
+      scope.data= graphIdNoId.getData();
+
+    break;
     default:
     console.log("Algo salio muy mal");
 
@@ -118,24 +136,36 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', function (
   //  setTimeout(function() { }, 50);
           graphSales.default();
           scope.data= graphSales.getData();
-      console.log(" graphTitle: " + scope.graphTitle + " graph: " + scope.graph + " data: "+ scope.data + " type: " +scope.type);     
-    
+      
         break;
 
         case "recurrences":
 //setTimeout(function() { scope.type="daily";}, 1000);
           graphRecurrences.default();
           scope.data= graphRecurrences.getData();
-       console.log(" graphTitle: " + scope.graphTitle + " graph: " + scope.graph + " data: "+ scope.data + " type: " +scope.type); 
+       
+        break;
+        case "averageSalesHour":
+
+    
+
+          graphSalesHour.default();
+          scope.data= graphSalesHour.getData();
 
         break;
+        case "idNid":
 
+    
+
+          graphIdNoId.default();
+          scope.data= graphIdNoId.getData();
+
+        break;
         default:
         console.log("Algo salio muy mal");
 
       };
-      console.log(" graphTitle: " + scope.graphTitle + " graph: " + scope.graph + " data: "+ scope.data + " type: " +scope.type); 
-
+      
      // setTimeout(function() { scope.type="daily";}, 500);
       scope.btnCal="Diario";
       scope.date={from:"",
