@@ -1,7 +1,7 @@
 'use strict';
 
 
-projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', function (graphSales,graphRecurrences,graphSalesHour,graphIdNoId) {
+projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', 'graphSalesInvoices', function (graphSales,graphRecurrences,graphSalesHour,graphIdNoId,graphSalesInvoices) {
   return {
     templateUrl: 'views/templates/ltxGraph.html',
     restrict: 'E',
@@ -16,8 +16,11 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
 
     link : function postLink (scope, element, attrs) {
 
-
+    if (scope.graph==='salesInvoices'){
+      scope.btnCal="Mensual";
+        }else{
       scope.btnCal="Diario";
+      }
       scope.date={from:"",
       until:"",};
 
@@ -110,6 +113,14 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
       scope.data= graphIdNoId.getData();
 
     break;
+    case "salesInvoices":
+
+    
+
+      graphSalesInvoices.updateDate(type,from,until);
+      scope.data= graphSalesInvoices.getData();
+
+    break;
     default:
     console.log("Algo salio muy mal");
 
@@ -129,13 +140,15 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
 
   scope.delete = function (){
       //scope.data=[];
-      scope.type="daily";
+      
       switch(scope.graph){
 
         case "sales":
   //  setTimeout(function() { }, 50);
           graphSales.default();
           scope.data= graphSales.getData();
+          scope.btnCal="Diario";
+          scope.type="daily";
       
         break;
 
@@ -143,6 +156,8 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
 //setTimeout(function() { scope.type="daily";}, 1000);
           graphRecurrences.default();
           scope.data= graphRecurrences.getData();
+          scope.btnCal="Diario";
+          scope.type="daily";
        
         break;
         case "averageSalesHour":
@@ -151,6 +166,8 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
 
           graphSalesHour.default();
           scope.data= graphSalesHour.getData();
+          scope.btnCal="Diario";
+          scope.type="daily";
 
         break;
         case "idNid":
@@ -159,7 +176,18 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
 
           graphIdNoId.default();
           scope.data= graphIdNoId.getData();
+          scope.btnCal="Diario";
+          scope.type="daily";
 
+        break;
+        case "salesInvoices":
+
+    
+
+          graphSalesInvoices.default();
+          scope.data= graphSalesInvoices.getData();
+          scope.btnCal="Mensual";
+          scope.type="monthly";
         break;
         default:
         console.log("Algo salio muy mal");
@@ -167,7 +195,7 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
       };
       
      // setTimeout(function() { scope.type="daily";}, 500);
-      scope.btnCal="Diario";
+  
       scope.date={from:"",
       until:"",};
 

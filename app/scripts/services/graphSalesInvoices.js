@@ -82,12 +82,12 @@ $q.all([invoices,sales,]).then(function (results) {
       updateDate: function (type,tbeg,tend) {
  var invoices = $http({
             method: 'GET',
-            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.invoices+"?"+ltxVars.arguments.monthly+"&"+ltxVars.arguments.last_year
+            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.invoices+"?"+ (type=="monthly" ? ltxVars.arguments.monthly +"&" :"") +"beg="+tbeg+"&"+"end="+tend
           });
 
   var sales = $http({
             method: 'GET',
-            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.sales+"?"+ltxVars.arguments.monthly+"&"+ltxVars.arguments.last_year
+            url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.sales+"?"+ (type=="monthly" ? ltxVars.arguments.monthly +"&" :"") +"beg="+tbeg+"&"+"end="+tend
           });
 
 
