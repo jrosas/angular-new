@@ -21,6 +21,7 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
         }else{
       scope.btnCal="Diario";
       }
+
       scope.date={from:"",
       until:"",};
 
@@ -28,17 +29,19 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
 
       scope.switch=function(){
         if (scope.type != "hour"){
-        if (scope.btnCal==="Diario") {
 
-          scope.btnCal="Mensual";
+          if (scope.btnCal==="Diario") {
 
+            scope.btnCal="Mensual";
+           // scope.type="monthly";
 
-        } else{
+          } else{
 
-          scope.btnCal="Diario";
+            scope.btnCal="Diario";
+           // scope.type="daily";
+          };
 
         };
-      };
       };
 
 
@@ -60,23 +63,16 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
      scope.date.until.setMilliseconds(0);
      var until=Math.round(scope.date.until/1000)-(scope.date.until.getTimezoneOffset()*60);
 
-     /*ojo*/
-     if (scope.btnCal=="Mensual"){
-
-      type="monthly";
-
-
-      /*ojo*/
-    }
-
+if (scope.type!="hour") {
   if (scope.btnCal==="Mensual") {
     scope.type="monthly";
+    type="monthly";
    //   setTimeout(function() { }, 50);
     }else{
       scope.type="daily";
    //  setTimeout(function() { }, 50);
      }; 
-
+};
    switch(scope.graph){
 
     case "sales":
@@ -167,7 +163,7 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
           graphSalesHour.default();
           scope.data= graphSalesHour.getData();
           scope.btnCal="Diario";
-          scope.type="daily";
+          scope.type="hour";
 
         break;
         case "idNid":
