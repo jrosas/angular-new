@@ -50,6 +50,10 @@ projectXApp.config(function ($routeProvider) {
            'IdvNidData':function(graphIdNoId){
               return graphIdNoId.promise;
 
+           },
+           'IdvNidTotalData':function(graphIdNoIdTotal){
+              return graphIdNoIdTotal.promise;
+
            }
 
          }

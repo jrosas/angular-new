@@ -1,7 +1,7 @@
 'use strict';
 
 
-projectXCtrl.controller('MainCtrl', [ '$scope', 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', 'graphSalesInvoices' , 'Invoices', 'Sales', 'Nidsales', 'Idsales','dailyRecurrence','dailyNew', 'dailyRecuNew', 'DailyStats','AverageStats', '$cookieStore', function ($scope, graphSales, graphRecurrences, graphSalesHour, graphIdNoId, graphSalesInvoices, Invoices, Sales, Nidsales, Idsales ,dailyRecurrence, dailyNew, dailyRecuNew, DailyStats, AverageStats, $cookieStore) {
+projectXCtrl.controller('MainCtrl', [ '$scope', 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', 'graphSalesInvoices' , 'graphIdNoIdTotal' ,'Invoices', 'Sales', 'Nidsales', 'Idsales','dailyRecurrence','dailyNew', 'dailyRecuNew', 'dailyStats','AverageStats', '$cookieStore', function ($scope, graphSales, graphRecurrences, graphSalesHour, graphIdNoId, graphSalesInvoices, graphIdNoIdTotal, Invoices, Sales, Nidsales, Idsales ,dailyRecurrence, dailyNew, dailyRecuNew, dailyStats, AverageStats, $cookieStore) {
 
 $scope.data={
   sales : "" ,
@@ -9,6 +9,15 @@ $scope.data={
   salesInvoices : "",
   averagePerHour : "",
   idNid : "",
+  idNidTotal : "",
+  today : {
+          sales : "",
+          id : "",
+          nid : "",
+          new : "",
+          recurrences : "",
+          recunew : "",
+          },
 
 };
 
@@ -17,7 +26,8 @@ $scope.type={
   recurrences : "daily",
   salesInvoices : "monthly",
   averagePerHour : "hour",
-  idNid : "daily"
+  idNid : "daily",
+  idNidTotal : "hour"
   
 };
 
@@ -26,6 +36,7 @@ $scope.data.recurrences= graphRecurrences.getData();
 $scope.data.salesInvoices= graphSalesInvoices.getData();
 $scope.data.averagePerHour = graphSalesHour.getData();
 $scope.data.idNid = graphIdNoId.getData();
+$scope.data.idNidTotal = graphIdNoIdTotal.getData();
 
 //setTimeout(function() {$scope.data.sales=[{"color":"#FFCC00","key":"Ventas","values":[[1391212800000,3510.36],[1391299200000,0],[1391385600000,7286.76],[1391472000000,4835.53],[1391558400000,5998.84],[1391644800000,7399.76],[1391731200000,9079.64],[1391817600000,1858.63],[1391904000000,0],[1391990400000,4333.08],[1392076800000,4931.83],[1392163200000,4730.6],[1392249600000,2916.41],[1392336000000,6561.01],[1392422400000,3776.92],[1392508800000,0],[1392595200000,3776.44],[1392681600000,0],[1392768000000,3953.02],[1392854400000,4448.56],[1392940800000,3217.39],[1393027200000,0],[1393113600000,0],[1393200000000,804.8],[1393286400000,3467.62],[1393372800000,4984.82],[1393459200000,1505.94],[1393545600000,0],[1393632000000,261.64],[1393718400000,0],[1393804800000,0]]}]; graphSales.clearData(); console.log("time");}, 500); 
 
@@ -516,7 +527,7 @@ if ($cookieStore.get("islogged")) {
  //fetchDataNvR();
  //fetchDataIdvnid();
 // fetchDataAverage();
- //fetchDataIdnidtotal();
+ fetchDataIdnidtotal();
 // fetchDataSvI_M();
  //fetchDataRecurrence();
 // getDailyStats();

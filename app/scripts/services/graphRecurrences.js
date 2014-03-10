@@ -46,22 +46,7 @@ projectXServices.factory('graphRecurrences', function ($http,$q) {
 
 
   });
-  /*
-var promise = dailyRecurrence.success(function(response){
-    dta[0].values = response.values;
-    dailyNew.success(function(response){
-      dto[0].values = response.values;
-      dailyRecuNew.success(function(response){
-        dtao[0].values = response.values;
-        var aux =dta.concat(dto);
 
-        recurrenceData = aux.concat(dtao);
-        console.log(recurrenceData);
-      });
-    });
-});
- 
-*/
 
 
 	return {
@@ -108,19 +93,7 @@ $q.all([dailyRecurrence,dailyNew,dailyRecuNew]).then(function (results) {
 
 
   });
-/*
-          dailyRecurrence.success(function(response){
-            dta[0].values = response.values;
-            dailyNew.success(function(response){
-              dto[0].values = response.values;
-              dailyRecuNew.success(function(response){
-                dtao[0].values = response.values;
-                var aux =dta.concat(dto);
-                recurrenceData = aux.concat(dtao);
-              console.log(recurrenceData);
-              });
-            });
-          });*/
+
           
       },
 

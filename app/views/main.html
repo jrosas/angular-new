@@ -113,7 +113,7 @@
 
 
 <ltx-graph 
-    graph-title="Promedio de ventas por hora"
+    graph-title="Promedio de Ventas por Hora"
     graph="averageSalesHour"
     data="data.averagePerHour"
     type="type.averagePerHour"
@@ -145,7 +145,7 @@
 
 
 <ltx-graph 
-    graph-title="Ventas identificadas vs No identificadas"
+    graph-title="Facturas Identificadas vs Facturas no Identificadas"
     graph="idNid"
     data="data.idNid"
     type="type.idNid"
@@ -258,61 +258,22 @@ tooltipcontent="toolTipContentIdvNidFunction()"
 
 </ltx-graph>
 
+<ltx-graph 
+    graph-title="Facturas Identificadas vs Facturas no Identificadas Total"
+    graph="idNidTotal"
+    data="data.idNidTotal"
+    type="type.idNidTotal"
+    >
 
+ 
+<div class="graph" > 
 
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-      <h5 class="panel-title" align="center">  Ventas Mensuales vs Cantidad de Facturas.  </h5>
-  </div>
-  <div class="panel-body">
-
-    <div class="graph">
-
-   <!--     <nvd3-line-plus-bar-chart
-
-        data="data.salesInvoices"
-        id="SvI_M1"
-        xAxisTickFormat="xAxisTickMonthlyFormat()"
-        y1AxisTickFormat="y1AxisTickFormat()"
-     y2AxisTickFormat="y2AxisTickFormat()"
-
-        interactive="true"
-        tooltips="true"
-        showlegend="true"
-        showXAxis="true"
-        showYAxis="true"
-   tooltipcontent="toolTipContentSalesFunction()"
-        
-        margin={left:100,top:200,bottom:50,right:50}>
-        <svg></svg>
-    </nvd3-line-plus-bar-chart> -->
-
-</div>
-
-
-</div>
-
-</div>
-<!--
-
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-      <h5 class="panel-title" align="center"> Facturas identificadas vs Facturas no identificadas. (Histórico)</h5>
-  </div>
-  <div class="panel-body">
-
-    <div class="graph">
-
-        <nvd3-pie-chart
-        data="dataIdvnidTotal"
-        id="IdvnidTotal"
+<nvd3-pie-chart
+        data="data.idNidTotal"
+        id="idNidTotal"
         x="xFunction()"
         y="yFunction()"
-
+        objectEquality="true"
         tooltipcontent="toolTipFactFunction()"
         color="colorFunction()"
         showLabels="true"
@@ -326,9 +287,7 @@ tooltipcontent="toolTipContentIdvNidFunction()"
         <svg></svg>
     </nvd3-pie-chart>
 
+</div>
+</ltx-graph>
 
-</div>
-</div>
-</div>
--->
 </div>
