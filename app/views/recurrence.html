@@ -3,10 +3,8 @@
     <div  ng-cotroller="RecurrenceCtrl">
 
 <div class="alert alert-warning" align="center">
-      Los información en esta página se basa en las <strong> Facturas Identificadas ({{dataResumePercent}}%)</strong>  
+      Los información en esta página se basa en las <strong> Facturas Identificadas ({{data.resume.percent}}%)</strong>  
     </div>
-
-
 
 <div  class="panel panel-default">
     <div class="panel-heading">
@@ -19,7 +17,7 @@
        		 <span class="badge">Cantidad de Usuarios</span>
         	Número de Visitas
      	 </li>
-      	<li class="list-group-item" ng-repeat="data in dataResumeValue">
+      	<li class="list-group-item" ng-repeat="data in data.resume.data">
        		 <span class="badge">{{ data[2] | number:2  }}%</span>
              <span class="badge">{{data[1]}}</span>
 
@@ -32,50 +30,52 @@
 
 </div>
 
+<ltx-graph 
+    graph-title="Tiempo Promedio entre Visitas"
+    graph="distanceVisit"
+    data="data.distanceVisit"
+    type="type.distanceVisit"
+    >
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h5 class="panel-title" align="center"> Tiempo promedio entre Visitas (Últimos 30 días). </h5> 
-         
-    </div>
-    <div class="panel-body" >
-<h6 align="center"> Promedio general {{dataAvgTotal|  number:2}}  días</h6>
-        <div class="graph">        
+<h6 align="center"> Promedio general {{data.distanceVisit.avg|  number:2}}  días</h6>
+ 
+<div class="graph" > 
+ <nvd3-line-chart
 
-         <nvd3-line-chart
-
-         data="dataAvg"
-         id="avgdist"
-       	 forceX="[0]"
+         data="data.distanceVisit.data"
+         id="avgdisst"
+         forceX="[0]"
          showXAxis="true"
          showYAxis="true"
          interactive="true"
          tooltips="true"
          yAxisTickFormat="IntAxisTickFormat()"
-         
+         objectEquality="true"
          staggerLabels="true"
         tooltipcontent="toolTipContentAvgFunction()"
           
 
          margin={left:100,top:5,bottom:50,right:50}
          ><svg ></svg></nvd3-line-chart>
-     </div>
- </div>
-
+ 
 </div>
+</ltx-graph> 
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h5 class="panel-title" align="center"> Visitas Nuevas mensuales vs Visitas Recurrentes </h5>
-    </div>
-    <div class="panel-body" >
 
-        <div class="graph">        
+<ltx-graph 
+    graph-title="Visitas Nuevas vs Visitas Recurrentes"
+    graph="visitNewRecu"
+    data="data.visitNewRecu"
+    type="type.visitNewRecu"
+    >
 
-         <nvd3-multi-bar-chart
+    <div  ng-switch on="type.visitNewRecu">
 
-         data="dataMonthlyNvR"
-         id="NvRMonthly"
+<div class="graph" ng-switch-when="monthly"> 
+   <nvd3-multi-bar-chart
+
+         data="data.visitNewRecu"
+         id="NvRMonthly1"
          xAxisTickFormat="xAxisTickMonthlyFormat()"
          yAxisTickFormat="y2AxisTickFormat()"
          showXAxis="true"
@@ -85,48 +85,103 @@
          tooltipcontent="toolTipContentNvRFunction()"
          reduceXTicks="true"
          staggerLabels="true"
- 
+         objectEquality="true"
          showLegend="true"
          
 
          margin={left:100,top:200,bottom:50,right:50}
          ><svg ></svg></nvd3-multi-bar-chart>
-     </div>
- </div>
-
 </div>
+        
+<div class="graph" ng-switch-when="daily"> 
 
-<!--<div class="panel panel-default">
-    <div class="panel-heading">
-        <h5 class="panel-title" align="center"> Ventas por Visitas Nuevas vs Ventas Visitas Recurrentes </h5>
-    </div>
-    <div class="panel-body" >
+      <nvd3-multi-bar-chart
 
-        <div class="graph">        
-
-         <nvd3-multi-bar-chart
-
-         data="dataInvoNvsR"
-         id="InvoNvsR"
-         
+         data="data.visitNewRecu"
+         id="NvRMonthly2"
+         xAxisTickFormat="xAxisTickFormat()"
+         yAxisTickFormat="y2AxisTickFormat()"
          showXAxis="true"
          showYAxis="true"
          interactive="true"
          tooltips="true"
-         xAxisTickFormat="xAxisDayTickFormat()"
+         tooltipcontent="toolTipContentNvRFunction()"
          reduceXTicks="true"
          staggerLabels="true"
-         
+        objectEquality="true"
          showLegend="true"
          
 
          margin={left:100,top:200,bottom:50,right:50}
          ><svg ></svg></nvd3-multi-bar-chart>
-     </div>
- </div>
+</div>
+
 
 </div>
--->
+
+</ltx-graph>
+
+<ltx-graph 
+    graph-title="Ingresos por Visitas Nuevas vs Ingresos por  Visitas Recurrentes"
+    graph="revenueNewRecu"
+    data="data.revenueNewRecu"
+    type="type.revenueNewRecu"
+    >
+
+    <div  ng-switch on="type.revenueNewRecu">
+
+<div class="graph" ng-switch-when="monthly"> 
+   <nvd3-multi-bar-chart
+
+         data="data.revenueNewRecu"
+         id="ReveNvRMonthly1"
+         xAxisTickFormat="xAxisTickMonthlyFormat()"
+         yAxisTickFormat="y1AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentRevenueNvRFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+         objectEquality="true"
+         showLegend="true"
+         
+
+         margin={left:100,top:200,bottom:50,right:50}
+         ><svg ></svg></nvd3-multi-bar-chart>
+</div>
+        
+<div class="graph" ng-switch-when="daily"> 
+
+      <nvd3-multi-bar-chart
+
+         data="data.revenueNewRecu"
+         id="ReveNvRMonthly2"
+         xAxisTickFormat="xAxisTickFormat()"
+         yAxisTickFormat="y1AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         interactive="true"
+         tooltips="true"
+         tooltipcontent="toolTipContentRevenueNvRFunction()"
+         reduceXTicks="true"
+         staggerLabels="true"
+        objectEquality="true"
+         showLegend="true"
+         
+
+         margin={left:100,top:200,bottom:50,right:50}
+         ><svg ></svg></nvd3-multi-bar-chart>
+</div>
+
+
+</div>
+
+</ltx-graph>
+
+
+
 
 
 

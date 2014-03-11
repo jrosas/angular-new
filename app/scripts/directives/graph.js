@@ -1,7 +1,8 @@
 'use strict';
 
 
-projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', 'graphSalesInvoices', 'graphIdNoIdTotal' , function (graphSales,graphRecurrences,graphSalesHour,graphIdNoId,graphSalesInvoices,graphIdNoIdTotal) {
+projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', 'graphSalesInvoices', 'graphIdNoIdTotal' , 'graphAvgDistance', 'graphVisitNewRecu', 'graphSalesWeek', 'graphRevenueNewRecu',
+                           function (graphSales,graphRecurrences,graphSalesHour,graphIdNoId,graphSalesInvoices,graphIdNoIdTotal,graphAvgDistance,graphVisitNewRecu,graphSalesWeek, graphRevenueNewRecu) {
   return {
     templateUrl: 'views/templates/ltxGraph.html',
     restrict: 'E',
@@ -16,7 +17,14 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
 
     link : function postLink (scope, element, attrs) {
 
-    if (scope.graph==='salesInvoices'){
+
+
+
+
+
+
+
+    if (scope.type==='monthly'){
       scope.btnCal="Mensual";
         }else{
       scope.btnCal="Diario";
@@ -26,6 +34,15 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
       until:"",};
 
 
+
+    scope.$watch('date.until',function (newVal, oldVal) {
+      if(newVal){
+        if (scope.btnCal==='Mensual'){
+          scope.date.until= new Date(newVal.getFullYear(),newVal.getMonth() + 1, 0);
+        
+        }
+      }
+    },true);
 
       scope.switch=function(){
         if (scope.type != "hour"){
@@ -48,6 +65,7 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
       scope.refresh = function (){
         var type = "";
         if (scope.date.from!="" && scope.date.until!="" ){
+
           scope.date.from.setHours(0);
           scope.date.from.setMinutes(0);
           scope.date.from.setSeconds(0);
@@ -61,12 +79,16 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
      scope.date.until.setMinutes(0);
      scope.date.until.setSeconds(0);
      scope.date.until.setMilliseconds(0);
-     var until=Math.round(scope.date.until/1000)-(scope.date.until.getTimezoneOffset()*60);
+     var until=(Math.round(scope.date.until/1000)-(scope.date.until.getTimezoneOffset()*60))+86399;
+
+
 
 if (scope.type!="hour") {
   if (scope.btnCal==="Mensual") {
     scope.type="monthly";
     type="monthly";
+
+
    //   setTimeout(function() { }, 50);
     }else{
       scope.type="daily";
@@ -125,6 +147,43 @@ if (scope.type!="hour") {
       scope.data= graphIdNoIdTotal.getData();
 
     break;
+
+    case "distanceVisit":
+
+    
+
+      graphAvgDistance.updateDate(type,from,until);
+      scope.data= graphAvgDistance.getData();
+
+    break;
+
+    case "visitNewRecu":
+
+    
+
+      graphVisitNewRecu.updateDate(type,from,until);
+      scope.data= graphVisitNewRecu.getData();
+
+    break;
+
+    case "averageSalesWeek":
+
+    
+
+      graphSalesWeek.updateDate(type,from,until);
+      scope.data= graphSalesWeek.getData();
+
+    break;
+
+    case "revenueNewRecu":
+
+    
+
+      graphRevenueNewRecu.updateDate(type,from,until);
+      scope.data= graphRevenueNewRecu.getData();
+
+    break;
+
     default:
     console.log("Algo salio muy mal");
 
@@ -202,6 +261,49 @@ if (scope.type!="hour") {
           scope.btnCal="Diario";
           scope.type="hour";
         break;
+
+        case "distanceVisit":
+
+    
+
+          graphAvgDistance.default();
+          scope.data= graphAvgDistance.getData();
+          scope.btnCal="Diario";
+          scope.type="hour";
+        break;
+
+          case "visitNewRecu":
+
+    
+
+          graphVisitNewRecu.default();
+          scope.data= graphVisitNewRecu.getData();
+          scope.btnCal="Mensual";
+          scope.type="monthly";
+        break;
+
+          case "averageSalesWeek":
+
+    
+
+          graphSalesWeek.default();
+          scope.data= graphSalesWeek.getData();
+          scope.btnCal="Diario";
+          scope.type="hour";
+
+        break;
+
+        case "revenueNewRecu":
+
+    
+
+          graphRevenueNewRecu.default();
+          scope.data= graphRevenueNewRecu.getData();
+          scope.btnCal="Mensual";
+          scope.type="monthly";
+        break;
+
+
         default:
         console.log("Algo salio muy mal");
 

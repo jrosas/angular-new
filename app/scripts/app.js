@@ -35,6 +35,9 @@ projectXApp.config(function ($routeProvider) {
         templateUrl: 'views/main.html', 
         controller: 'MainCtrl',
         resolve:{
+          'todayData':function(dailyStats){
+              return dailyStats.promise;
+           },
           'SalesData':function(graphSales){
               return graphSales.promise;
            },
@@ -49,12 +52,14 @@ projectXApp.config(function ($routeProvider) {
            },
            'IdvNidData':function(graphIdNoId){
               return graphIdNoId.promise;
-
            },
            'IdvNidTotalData':function(graphIdNoIdTotal){
               return graphIdNoIdTotal.promise;
-
+           },
+           'AverageWeekData':function(graphSalesWeek){
+              return graphSalesWeek.promise;
            }
+
 
          }
        
@@ -63,7 +68,21 @@ projectXApp.config(function ($routeProvider) {
     $routeProvider.when('/analytics/recurrence', 
       {
         templateUrl: 'views/recurrence.html', 
-        controller: 'RecurrenceCtrl'
+        controller: 'RecurrenceCtrl',
+        resolve: {
+          'recurrenceResume':function(resumeRecurrence){
+              return resumeRecurrence.promise;
+           },
+          'avgDistanceData':function(graphAvgDistance){
+              return graphAvgDistance.promise;
+           },
+          'VisitNewRecuData':function(graphVisitNewRecu){
+              return graphVisitNewRecu.promise;
+           },
+          'RevenueNewRecuData':function(graphRevenueNewRecu){
+              return graphRevenueNewRecu.promise;
+           }
+        }
       });
 
 

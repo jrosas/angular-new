@@ -32,7 +32,10 @@ ltxVars.endpoints = {
 	recurrenceresume : "/getrecurrenceresume",
 	averagedistance: "/getaveragedistance",
 	recuinvoices: "/getrecurrentinvoices",
-	newinvoices: "/getnewinvoices"
+	newinvoices: "/getnewinvoices",
+	weeklysales : "/getweeklysales",
+	revenuenew : "/getnewinvoices",
+	revenuerecurrences : "/getrecurrentinvoices"
 };
 ltxVars.arguments = {
 	total :"total=1",

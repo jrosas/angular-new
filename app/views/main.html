@@ -143,6 +143,36 @@
 </ltx-graph>
 
 
+<ltx-graph 
+    graph-title="Promedio de Ventas por Día"
+    graph="averageSalesWeek"
+    data="data.averagePerWeek"
+    type="type.averagePerWeek"
+    >
+
+ 
+<div class="graph" > 
+
+        <nvd3-multi-bar-chart
+
+         data="data.averagePerWeek"
+
+         id="avgsaleshour"
+         tooltipcontent="toolTipContentAvgFunction()"
+         yAxisTickFormat="y1AxisTickFormat()"
+         showXAxis="true"
+         showYAxis="true"
+         margin={left:100,top:200,bottom:50,right:50}
+         tooltips="true"        
+         showLegend="true"
+          y="yFunctionAvg()"
+          objectEquality="true"
+       
+         ><svg ></svg>
+        </nvd3-multi-bar-chart>
+</div>
+</ltx-graph>
+
 
 <ltx-graph 
     graph-title="Facturas Identificadas vs Facturas no Identificadas"

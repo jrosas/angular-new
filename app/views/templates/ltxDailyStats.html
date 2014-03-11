@@ -1,31 +1,30 @@
 <div align="center" class="row">
 	<div  class="col-lg-4">
 		<h4>Ventas Diarias</h4>
-		<p >{{dataTodaySales | number:2 }}</p>
+		<p >{{data.today.sales | number:2 }}</p>
 	</div>
 	<div  class="col-lg-4">
 		<h4>Facturas Identificadas</h4>
-		<p >{{dataTodayIdsales }}</p>
+		<p >{{data.today.id }}</p>
 	</div>
 	<div  class="col-lg-4">
 		<h4>Facturas no Identificadas</h4>
-		<p >{{dataTodayNidsales  }}</p>
+		<p >{{data.today.nid  }}</p>
 	</div>
 </div>
 	<div align="center"  class="row">
     <div class="col-lg-4">
     	<h4>Usuarios Nuevos</h4>
-		<p>{{dataTodaydailyNew}}</p>
+		<p>{{data.today.new}}</p>
     </div>
 	<div class="col-lg-4">
 		<h4>Usuarios Recurrentes</h4>
-
-		<p>{{ dataTodaydailyRecurrence  }}</p>
+		<p>{{ data.today.recurrences  }}</p>
 
 	</div>
 	<div class="col-lg-4">
 		<h4>Recurrencias Adicionales</h4>
-		<p>{{dataTodaydailyRecuNew}}</p>
+		<p>{{data.today.recunew}}</p>
 	</div>
 </div>
 
