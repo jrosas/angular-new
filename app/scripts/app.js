@@ -84,7 +84,12 @@ projectXApp.config(function ($routeProvider) {
            }
         }
       });
-
+    $routeProvider.when('/analytics/products', 
+      {
+        templateUrl: 'views/products.html',
+        controller: 'ProductsCtrl',
+     
+      });
 
     $routeProvider.otherwise({
         redirectTo: '/'

@@ -9,15 +9,15 @@
       
       <div class="form-group">
         
-        <button type="button" ng-click="switch()" class="btn btn-info" ><span class="glyphicon glyphicon-calendar"></span> {{btnCal}} </button>
+        <button id="daily" type="button" ng-click="switch()" class="btn btn-info" ><span class="glyphicon glyphicon-calendar"></span> {{btnCal}} </button>
 
       
         <div class="form-group" class="col-xs-3">
-          <input type="text" class="form-control" ng-model="date.from"  data-max-date="{{date.until}}" data-min-view=0  placeholder="Desde" bs-datepicker>
+          <input type="text" class="form-control" ng-model="date.from"  data-max-date="today" data-min-view=0  placeholder="Desde" autoclose="true" bs-datepicker>
         </div>
 
         <div class="form-group" class="col-xs-3">
-          <input type="text" class="form-control" ng-model="date.until"  data-min-date="{{date.from}}" data-min-view=0 placeholder="Hasta" data-max-date="today"  bs-datepicker>
+          <input type="text" class="form-control" ng-model="date.until"  data-min-date="{{date.from}}" data-min-view=0 placeholder="Hasta" data-max-date="today"  autoclose="true" bs-datepicker>
         </div>
         <div class="form-group" class="col-xs-3">
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
@@ -38,11 +38,11 @@
 
       
         <div class="form-group" class="col-xs-3">
-          <input type="text" class="form-control" ng-model="date.from"  data-max-date="{{date.until}}" data-min-view=1  placeholder="Desde" bs-datepicker>
+          <input type="text" class="form-control" ng-model="date.from"  data-max-date="today" data-min-view=1  placeholder="Desde" autoclose="true" bs-datepicker>
         </div>
 
         <div class="form-group" class="col-xs-3">
-          <input type="text" class="form-control" ng-model="date.until"  data-min-date="{{date.from}}" data-min-view=1 placeholder="Hasta" data-max-date="today" bs-datepicker>
+          <input type="text" class="form-control" ng-model="date.until"  data-min-date="{{date.from}}" data-min-view=1 placeholder="Hasta" data-max-date="today" autoclose="true" bs-datepicker>
         </div>
         <div class="form-group" class="col-xs-3">
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>

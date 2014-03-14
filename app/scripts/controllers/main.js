@@ -34,6 +34,27 @@ $scope.type={
   
 };
 
+
+$scope.funct={
+  sales : dailyStats,
+  recurrences : "",
+  salesInvoices : "",
+  averagePerHour : "",
+  idNid : "",
+  idNidTotal : "",
+  today : {
+          sales : "",
+          id : "",
+          nid : "",
+          new : "",
+          recurrences : "",
+          recunew : "",
+          },
+  averagePerWeek : "",
+
+};
+
+
 var colorArray = ['#428bca', '#FF0000' , '#FF0000','#FF0000','#FF0000','#FF0000','#FF0000','#FF0000','#FF0000','#FF0000' ];
 $scope.colorFunction = function() {
  return function(d, i) {

@@ -12,7 +12,8 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
       graphTitle:"@",
       graph:"@",
       data:"=",
-      type:"="
+      type:"=",
+      funct:"&"
     },
 
     link : function postLink (scope, element, attrs) {
@@ -20,8 +21,7 @@ projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSale
 
 
 
-
-
+  
 
 
     if (scope.type==='monthly'){
