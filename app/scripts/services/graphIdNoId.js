@@ -32,10 +32,10 @@ projectXServices.factory('graphIdNoId', function ($http,$q) {
           break;
         };
         
-        identificationData = dta.concat(dto);
+        
         });
 
-
+      identificationData = dta.concat(dto);
   });
   /*
 var promise = dailyRecurrence.success(function(response){

@@ -8,6 +8,7 @@ var projectXApp = angular.module('xdataLealtagApp', [
   'ngAnimate',
   'mgcrea.ngStrap',
   'nvd3ChartDirectives',
+  'ngTable',
   'projectXApp.controllers',
   'projectXApp.services',
   'projectXApp.directives'
@@ -88,6 +89,11 @@ projectXApp.config(function ($routeProvider) {
       {
         templateUrl: 'views/products.html',
         controller: 'ProductsCtrl',
+        resolve: {
+          'productsTable':function(tableProducts){
+              return tableProducts.promise;
+           }
+        }
      
       });
 

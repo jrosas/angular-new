@@ -1,6 +1,23 @@
 <div ng-controller="ProductsCtrl">
 
-
+        
+      <button ng-click="tableParams.sorting({qty: 'desc'})" class="btn btn-default pull-right">Restaurar Orden</button>
+        <button ng-click="tableParams.filter({})" class="btn btn-default pull-right">Limpiar filtros</button>
+    
+    
+        <table ng-table="tableParams" show-filter="true" class="table">
+            <tr ng-repeat="row in $data">
+                <td data-title="'Nombre'" sortable="'name'" filter="{ 'name': 'text' }">
+                    {{row.name}}
+                </td>
+                <td data-title="'Cantidad Vendida'" sortable="'qty'" filter="{ 'qty': 'text' }">
+                    {{row.qty}}
+                </td>
+                <td data-title="'Ingresos Generados'" sortable="'rev'" filter="{ 'rev': 'text' }">
+                    {{row.rev | number:2}}
+                </td>
+            </tr>
+        </table>
 
 
 </div>

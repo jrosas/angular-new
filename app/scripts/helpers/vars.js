@@ -35,7 +35,9 @@ ltxVars.endpoints = {
 	newinvoices: "/getnewinvoices",
 	weeklysales : "/getweeklysales",
 	revenuenew : "/getnewinvoices",
-	revenuerecurrences : "/getrecurrentinvoices"
+	revenuerecurrences : "/getrecurrentinvoices",
+	productscount : "/getproductscount",
+	productsrevenue : "/getproductsrevenue"
 };
 ltxVars.arguments = {
 	total :"total=1",
