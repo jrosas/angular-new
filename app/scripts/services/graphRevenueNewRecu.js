@@ -4,6 +4,7 @@ projectXServices.factory('graphRevenueNewRecu', function ($http,$q) {
 	var revenueData = null;
   var dta = [{color:"#428bca", key:"Ingresos por Visitas Recurrentes",values:[]}];
   var dto = [{color:"#FFCC00",key:"Ingresos por Visitas Nuevas",values:[]}];
+  var dtao = [{color:"#FF0000",key:"Ingresos por Visitas No identificadas",values:[]}];
   var beg = null;
   var end = null;
 
@@ -18,26 +19,37 @@ projectXServices.factory('graphRevenueNewRecu', function ($http,$q) {
               url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.revenuerecurrences+"?"+ltxVars.arguments.monthly+"&"+ltxVars.arguments.last_year
           });
 
+  var revenueNoid = $http({
+            method: 'GET',
+              url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.revenuenoid+"?"+ltxVars.arguments.monthly+"&"+ltxVars.arguments.last_year
+          });
 
 
-  var promise = $q.all([revenueNew,revenueRecurrences]).then(function (results) {
+
+  var promise = $q.all([revenueNew,revenueRecurrences,revenueNoid]).then(function (results) {
     angular.forEach(results, function (result) {
       
     switch(result.data.key){
-        case "new invoices":
+        case "new_invoices":
           dto[0].values = result.data.values;
           break;
-        case "recurrent invoices":
+        case "recurrent_invoices":
           dta[0].values = result.data.values;
+          break;
+      
+        case "noid_invoices":
+          dtao[0].values = result.data.values;
           break;
         };
 
 
-        revenueData = dto.concat(dta);
 
 
   });
 
+
+        var aux = dto.concat(dta);
+        revenueData = aux.concat(dtao);
  });
 
 	return {
@@ -59,24 +71,37 @@ var revenueNew = $http({
 
 
 
-  $q.all([revenueNew,revenueRecurrences]).then(function (results) {
+  var revenueNoid = $http({
+            method: 'GET',
+              url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.revenuenoid+"?"+ltxVars.arguments.monthly+"&"+ltxVars.arguments.last_year
+          });
+
+
+
+  $q.all([revenueNew,revenueRecurrences,revenueNoid]).then(function (results) {
     angular.forEach(results, function (result) {
       
     switch(result.data.key){
-        case "new invoices":
+        case "new_invoices":
           dto[0].values = result.data.values;
           break;
-        case "recurrent invoices":
+        case "recurrent_invoices":
           dta[0].values = result.data.values;
+          break;
+
+        case "noid_invoices":
+          dtao[0].values = result.data.values;
           break;
         };
 
 
-        revenueData = dto.concat(dta);
 
 
   });
 
+
+        var aux = dto.concat(dta);
+        revenueData = aux.concat(dtao);
  });
           
       },
@@ -94,24 +119,37 @@ var revenueNew = $http({
 
 
 
-  $q.all([revenueNew,revenueRecurrences]).then(function (results) {
+  var revenueNoid = $http({
+            method: 'GET',
+              url: ltxConn.url+":"+ltxConn.port+ltxVars.endpoints.main+ltxVars.endpoints.revenuenoid+"?"+ (type=="monthly" ? ltxVars.arguments.monthly +"&" :"") +"beg="+tbeg+"&"+"end="+tend
+          });
+
+
+
+  $q.all([revenueNew,revenueRecurrences,revenueNoid]).then(function (results) {
     angular.forEach(results, function (result) {
       
     switch(result.data.key){
-        case "new invoices":
+        case "new_invoices":
           dto[0].values = result.data.values;
           break;
-        case "recurrent invoices":
+        case "recurrent_invoices":
           dta[0].values = result.data.values;
+          break;
+       
+        case "noid_invoices":
+          dtao[0].values = result.data.values;
           break;
         };
 
 
-        revenueData = dto.concat(dta);
 
 
   });
 
+
+        var aux = dto.concat(dta);
+        revenueData = aux.concat(dtao);
  });
 
       }

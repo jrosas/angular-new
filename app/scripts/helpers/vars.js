@@ -34,8 +34,9 @@ ltxVars.endpoints = {
 	recuinvoices: "/getrecurrentinvoices",
 	newinvoices: "/getnewinvoices",
 	weeklysales : "/getweeklysales",
-	revenuenew : "/getnewinvoices",
-	revenuerecurrences : "/getrecurrentinvoices",
+	revenuenew : "/getnewrevenue",
+	revenuerecurrences : "/getrecurrentrevenue",
+	revenuenoid : "/getnoidrevenue",
 	productscount : "/getproductscount",
 	productsrevenue : "/getproductsrevenue"
 };
