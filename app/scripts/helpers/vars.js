@@ -43,6 +43,7 @@ ltxVars.endpoints = {
 ltxVars.arguments = {
 	total :"total=1",
 	monthly :"monthly=1",
+	weekly :"weekly=1",
 	now : "day="+now,
 	today: "beg="+now+"&"+"end="+end_day,
 	last_thirty : "beg="+last_thirty+"&"+"end="+end_day,

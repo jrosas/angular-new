@@ -4,6 +4,8 @@
 projectXCtrl.controller('MainCtrl', [ '$scope', '$cookieStore', 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', 'graphSalesInvoices' , 'graphIdNoIdTotal' ,'dailyStats',  'graphSalesWeek',
                             function ($scope, $cookieStore , graphSales, graphRecurrences, graphSalesHour, graphIdNoId, graphSalesInvoices, graphIdNoIdTotal, dailyStats, graphSalesWeek) {
 
+
+$scope.now=(new Date().toLocaleTimeString());
 $scope.data={
   sales : "" ,
   recurrences : "",

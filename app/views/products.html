@@ -1,23 +1,29 @@
 <div ng-controller="ProductsCtrl">
 
+<ltx-graph 
+    graph-title="Reporte general de Productos"
+    graph="productsTable"
+    data="data.table"
+    type="type.table"
+    >
         
-      <button ng-click="tableParams.sorting({qty: 'desc'})" class="btn btn-default pull-right">Restaurar Orden</button>
-        <button ng-click="tableParams.filter({})" class="btn btn-default pull-right">Limpiar filtros</button>
-    
-    
-        <table ng-table="tableParams" show-filter="true" class="table">
-            <tr ng-repeat="row in $data">
-                <td data-title="'Nombre'" sortable="'name'" filter="{ 'name': 'text' }">
-                    {{row.name}}
-                </td>
-                <td data-title="'Cantidad Vendida'" sortable="'qty'" filter="{ 'qty': 'text' }">
-                    {{row.qty}}
-                </td>
-                <td data-title="'Ingresos Generados'" sortable="'rev'" filter="{ 'rev': 'text' }">
-                    {{row.rev | number:2}}
-                </td>
-            </tr>
-        </table>
+<table class="table table-striped">
+<tr >
+  <th>Nombre</th>
+  <th>Cantidad Vendida</th> 
+  <th>Ingresos Generados</th>
+</tr>
+<tr ng-repeat="product in data.table">
+  <td>{{product.name}}</td>
+  <td>{{product.qty}}</td> 
+  <td>{{product.rev | number:2 }}</td>
+</tr>
+</table>
+
+
+</ltx-graph>
+
+      
 
 
 </div>

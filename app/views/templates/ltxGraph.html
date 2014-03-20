@@ -1,23 +1,70 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h5 class="panel-title" align="center"> {{graphTitle}}  </h5>
+        <div class="panel-title" align="center"> 
 
+
+
+  <div ng-if="date.from == '' && date.until == '' ">
+        <div ng-switch on="graph">
+          {{graphTitle}}  
+            <span ng-switch-when="sales"> 
+           - (Últimos 30 días)
+            </span>
+            <span ng-switch-when="recurrences"> 
+            - (Últimos 30 días)
+            </span>
+            <span ng-switch-when="averageSalesHour"> 
+            - (Últimos 30 días)
+            </span>
+            <span ng-switch-when="averageSalesWeek"> 
+            - (Últimos 30 días)
+            </span>
+            <span ng-switch-when="idNid"> 
+            - (Últimos 30 días)
+            </span>
+            <span ng-switch-when="salesInvoices"> 
+            - (Últimos 12 Meses)
+            </span>
+            <span ng-switch-when="idNidTotal"> 
+            - (Histórico) 
+            </span>
+            <span ng-switch-when="distanceVisit"> 
+            - (Últimos 30 días)
+            </span>
+            <span ng-switch-when="visitNewRecu"> 
+            - (Últimos 12 Meses)
+            </span>
+            <span ng-switch-when="revenueNewRecu"> 
+            - (Últimos 12 Meses)
+            </span>
+            <span ng-switch-when="productsTable"> 
+            - (Últimos 30 días)
+            </span>
+      </div>
+   </div>
+
+   <div ng-if="date.from !== '' || date.until !== '' ">
+    {{graphTitle}} - Desde: {{date.from | date :  'dd-MM-yyyy'}}  / Hasta: {{date.until | date : 'dd-MM-yyyy'}}
+   </div>
+
+
+</div>
 <div ng-switch on="btnCal">
 <div ng-switch-when="Diario">
 <form class="form-inline"  align="center" role="form" ng-submit="refresh()" >
   
       
-      <div class="form-group">
+      <div class="form-group" align="center" role="form">
         
         <button id="daily" type="button" ng-click="switch()" class="btn btn-info" ><span class="glyphicon glyphicon-calendar"></span> {{btnCal}} </button>
 
       
         <div class="form-group" class="col-xs-3">
-          <input type="text" class="form-control" ng-model="date.from"  data-max-date="today" data-min-view=0  placeholder="Desde" autoclose="true" bs-datepicker>
+          <input type="text" class="form-control" ng-model="date.from"  data-max-date="today" data-min-view=0  placeholder="Desde" autoclose="true" data-date-format="dd-MM-yyyy" bs-datepicker>
         </div>
 
         <div class="form-group" class="col-xs-3">
-          <input type="text" class="form-control" ng-model="date.until"  data-min-date="{{date.from}}" data-min-view=0 placeholder="Hasta" data-max-date="today"  autoclose="true" bs-datepicker>
+          <input type="text" class="form-control" ng-model="date.until"  data-min-date="{{date.from}}" data-min-view=0 placeholder="Hasta" data-max-date="today"  autoclose="true" data-date-format="dd-MM-yyyy" bs-datepicker>
         </div>
         <div class="form-group" class="col-xs-3">
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
@@ -38,11 +85,11 @@
 
       
         <div class="form-group" class="col-xs-3">
-          <input type="text" class="form-control" ng-model="date.from"  data-max-date="today" data-min-view=1  placeholder="Desde" autoclose="true" bs-datepicker>
+          <input type="text" class="form-control" ng-model="date.from"  data-max-date="today" data-min-view=1  placeholder="Desde" autoclose="true" data-date-format="dd-MM-yyyy" bs-datepicker>
         </div>
 
         <div class="form-group" class="col-xs-3">
-          <input type="text" class="form-control" ng-model="date.until"  data-min-date="{{date.from}}" data-min-view=1 placeholder="Hasta" data-max-date="today" autoclose="true" bs-datepicker>
+          <input type="text" class="form-control" ng-model="date.until"  data-min-date="{{date.from}}" data-min-view=1 placeholder="Hasta" data-max-date="today" autoclose="true" data-date-format="dd-MM-yyyy" bs-datepicker>
         </div>
         <div class="form-group" class="col-xs-3">
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
@@ -55,6 +102,8 @@
     </form>
 </div>
 </div>
+
+
      </div>
 
       <div class="panel-body" >

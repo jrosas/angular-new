@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 
 
@@ -185,8 +185,8 @@ $scope.toolTipContentNvRFunction = function(){
 
 $scope.toolTipContentRevenueNvRFunction = function(){
  return function(key, x, y, e, graph) {
- 
-   return  '<h4 align="center">'  + x + '</h4>'  + '<h5 align="center">'  + y +" Bs." +' </h5>'    
+
+   return  '<h4 align="center">'  + x + '</h4>'  + '<h5 align="center">'  + y +" / " +(e.point[2] != 0 ? ((100/e.point[2])*parseFloat(y.substring(3))).toFixed(2) : 0)+"%" +' </h5>'
  }
 };
 

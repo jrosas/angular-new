@@ -47,7 +47,13 @@ projectXServices.factory('graphRevenueNewRecu', function ($http,$q) {
 
   });
 
-
+ for (var i = 0; i < dta[0].values.length; i++) {
+     
+         dta[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+         dto[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+         dtao[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+       };
+       
         var aux = dto.concat(dta);
         revenueData = aux.concat(dtao);
  });
@@ -99,7 +105,12 @@ var revenueNew = $http({
 
   });
 
-
+ for (var i = 0; i < dta[0].values.length; i++) {
+     
+         dta[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+         dto[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+         dtao[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+       };
         var aux = dto.concat(dta);
         revenueData = aux.concat(dtao);
  });
@@ -148,8 +159,17 @@ var revenueNew = $http({
   });
 
 
+    for (var i = 0; i < dta[0].values.length; i++) {
+     
+         dta[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+         dto[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+         dtao[0].values[i].push(dta[0].values[i][1]+dto[0].values[i][1]+dtao[0].values[i][1]);
+       };
+
+
         var aux = dto.concat(dta);
         revenueData = aux.concat(dtao);
+
  });
 
       }

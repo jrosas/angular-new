@@ -1,8 +1,8 @@
 'use strict';
 
 
-projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', 'graphSalesInvoices', 'graphIdNoIdTotal' , 'graphAvgDistance', 'graphVisitNewRecu', 'graphSalesWeek', 'graphRevenueNewRecu',
-                           function (graphSales,graphRecurrences,graphSalesHour,graphIdNoId,graphSalesInvoices,graphIdNoIdTotal,graphAvgDistance,graphVisitNewRecu,graphSalesWeek, graphRevenueNewRecu) {
+projectXDir.directive('ltxGraph', [ 'graphSales', 'graphRecurrences', 'graphSalesHour', 'graphIdNoId', 'graphSalesInvoices', 'graphIdNoIdTotal' , 'graphAvgDistance', 'graphVisitNewRecu', 'graphSalesWeek', 'graphRevenueNewRecu', 'tableProducts',
+                           function (graphSales,graphRecurrences,graphSalesHour,graphIdNoId,graphSalesInvoices,graphIdNoIdTotal,graphAvgDistance,graphVisitNewRecu,graphSalesWeek, graphRevenueNewRecu,tableProducts) {
   return {
     templateUrl: 'views/templates/ltxGraph.html',
     restrict: 'E',
@@ -183,6 +183,14 @@ if (scope.type!="hour") {
       scope.data= graphRevenueNewRecu.getData();
 
     break;
+    case "productsTable":
+
+    
+
+      tableProducts.updateDate(type,from,until);
+      scope.data= tableProducts.getData();
+
+    break;
 
     default:
     console.log("Algo salio muy mal");
@@ -301,6 +309,15 @@ if (scope.type!="hour") {
           scope.data= graphRevenueNewRecu.getData();
           scope.btnCal="Mensual";
           scope.type="monthly";
+        break;
+
+        case "productsTable":
+    
+         
+          tableProducts.default();
+          scope.data= tableProducts.getData();
+          scope.btnCal="Diario";
+          scope.type="hour";
         break;
 
 

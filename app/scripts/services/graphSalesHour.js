@@ -29,7 +29,7 @@ projectXServices.factory('graphSalesHour', function ($http,$q) {
         case "average sales":
           dta[0].values=result.data.values;
           break;
-        case "average stats":
+        case "average_invoices":
           for (var i = 0; i < result.data.values.length; i++) {
        
             if (result.data.values[i].key=="identified") {
@@ -46,10 +46,10 @@ projectXServices.factory('graphSalesHour', function ($http,$q) {
 
           break;
         };
-        averageData = dta;
+        
         });
 
-
+    averageData = dta;
   });
   /*
 var promise = dailyRecurrence.success(function(response){
@@ -98,7 +98,7 @@ var promise = dailyRecurrence.success(function(response){
                 case "average sales":
                   dta[0].values=result.data.values;
                   break;
-                case "average stats":
+                case "average_invoices":
                   for (var i = 0; i < result.data.values.length; i++) {
                
                     if (result.data.values[i].key=="identified") {
@@ -145,7 +145,7 @@ var promise = dailyRecurrence.success(function(response){
                 case "average sales":
                   dta[0].values=result.data.values;
                   break;
-                case "average stats":
+                case "average_invoices":
                   for (var i = 0; i < result.data.values.length; i++) {
                
                     if (result.data.values[i].key=="identified") {
